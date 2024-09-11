@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .column {
+            text-align: center;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on smaller screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; /* Switch to 1 column on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Project 1</h1>
+    <h2> Overview  </h2>
+    <h3> In this project, using 3 versions of the same image, each with a color filter: red, blue and green. These when extracting the color channels in the black and white image, can be overlaid to create a color rendition of the original picture. Using different alignment algorithms such as L2 Norm and Normalized Cross-Correlation allows for a pixel alignment to properly place the images and overlay them. This is based on the concept developed by Sergei Mikhailovich Prokudin-Gorskii. He used 3 exposures of a scene which were put onto glass with either a blue, red, or green filter. When the glass plate negatives are layered they provide a colored image.  </h3>
+    <h2> Method  </h2>
+    <h3> To begin the program devides the image into three equal parts. Next, the parts need to be aligned. For this project I implemented Euclidian Norm(L2 Norm) and Normalized Cross-Correlation (NCC) for the Naive implementations. For this the alignment, it works through exhasitve search over a window of [-15,15] pixels. Then it calculates the best displacement between the images before returning the displacement. After that the red and green images are both adjusted to be properly aligned with the blue before they are all overlaid to return the final image. As the naive implementation is less efficient, using an image pyramid will allow the process to be sped up. Image pyramid reduces the scale of the image until a certain threshold. Next, it runs the aligment on the coarser image, before going up through the higher resolution versions of the images and just scaling the displacement to make the calculation quicker. To speed up the process.  </h3>
+    <h2> Obstacles  </h2>
+    <h3> I faced an issue with the Image Pyramid method on the Train image. After attempting to fix the image pyramid to work well for this image, I decided to take another approach using Edge Detection and Equalization which proved to solve the problem with the train image. After attempting with different methods of alignment, such as phase cross correlation. However, the alignment still wasn't looking better. I then implemented the image pyramid with phase cross corrolation as well as Canny Edge detection and Equalizing. This ended up fixing the issues with the train image, and also created better resolution and alignments for a lot of the other images. 
+    </h3>
+    <h2> Bells and Whistles </h2>
+    <h3> For this I implemented edge detection as well as a contrasting function. The edge detection uses equalized images to create a better alignment by using a filter that reduces the noise in the image which allows for a better alignment. The contrasting function uses the percentile to create a threshold for the pixel contrast. This was an attempt to help create better contrast in the images.  </h3>
+
+    <div class="container">
+        <!-- Folder 1 Column -->
+        <div class="column">
+            <h2>Euclidian Norm (L2 Norm)</h2>
+            <div class="image-container">
+                <img src="L2Norm/cathedral.png" alt="Image 1">
+                <div class="title">Displacement green: (1, -1)
+                    Displacement red: (7, -1)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/church.png" alt="Image 2">
+                <div class="title">Displacement green: (0, -5)
+                    Displacement red: (30, -12)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/emir.png" alt="Image 2">
+                <div class="title">Displacement green: (-3, 7)
+                    Displacement red: (30, 17)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/harvesters.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -3)
+                    Displacement red: (30, -2)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/icon.png" alt="Image 2">
+                <div class="title"> Displacement green: (30, 16)
+                    Displacement red: (30, -6)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/lady.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -7)
+                    Displacement red: (30, -18)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/melons.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -3)
+                    Displacement red: (30, -8)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm\monastary.png" alt="Image 2">
+                <div class="title">Displacement green: (-6, 0)
+                    Displacement red: (9, 1)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/onion_church.png" alt="Image 2">
+                <div class="title">Displacement green: (30, 0)
+                    Displacement red: (30, -1)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/sculpture.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -10)
+                    Displacement red: (30, -20)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/self_portrait.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -3)
+                    Displacement red: (30, -6)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/three_generations.png" alt="Image 2">
+                <div class="title">Displacement green: (30, 1)
+                    Displacement red: (30, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/tobolsk.png" alt="Image 2">
+                <div class="title">Displacement green: (3, 2)
+                    Displacement red: (6, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="L2Norm/train.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -4)
+                    Displacement red: (30, -1)</div>
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+        <div class="column">
+            <h2>Normalized Cross-Correlation</h2>
+            <div class="image-container">
+                <img src="NCC/cathedral.png" alt="Image 1">
+                <div class="title">Displacement green: (1, -1)
+                    Displacement red: (7, -1)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/church.png" alt="Image 2">
+                <div class="title">Displacement green: (0, -5)
+                    Displacement red: (30, -12)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/emir.png" alt="Image 2">
+                <div class="title">Displacement green: (-3, 7)
+                    Displacement red: (30, 17)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/harvesters.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -3)
+                    Displacement red: (30, -2)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/icon.png" alt="Image 2">
+                <div class="title"> Displacement green: (-3, 7) Displacement red: (30, 17)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/lady.png" alt="Image 2">
+                <div class="title">Displacement green: (30, 16)
+                    Displacement red: (30, -6)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/melons.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -7)
+                    Displacement red: (30, -18)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/monastery.png" alt="Image 2">
+                <div class="title">Displacement green: (-6, 0)
+                    Displacement red: (9, 1)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/onion_church.png" alt="Image 2">
+                <div class="title">Displacement green: (30, 0)
+                    Displacement red: (30, -1)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/sculpture.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -10)
+                    Displacement red: (30, -20)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/self_portrait.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -3)
+                    Displacement red: (30, -6)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/three_generations.png" alt="Image 2">
+                <div class="title">Displacement green: (30, 1)
+                    Displacement red: (30, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/tobolsk.png" alt="Image 2">
+                <div class="title">Displacement green: (3, 2)
+                    Displacement red: (6, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="NCC/train.png" alt="Image 2">
+                <div class="title">Displacement green: (30, -4)
+                    Displacement red: (30, -1)</div>
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+ 
+        <div class="column">
+            <h2>Image Pyramid</h2>
+            <div class="image-container">
+                <img src="Pyramid/cathedral.png" alt="Image 1">
+                <div class="title">Displacement green: (5, 2)
+                    Displacement red: (12, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/church.png" alt="Image 2">
+                <div class="title">Displacement green: (25, 4)
+                    Displacement red: (58, -4)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/emir.png" alt="Image 2">
+                <div class="title">Displacement green: (49, 24)
+                    Displacement red: (106, 41)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/harvesters.png" alt="Image 2">
+                <div class="title">Displacement green: (55, 11)
+                    Displacement red: (118, 11)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/icon.png" alt="Image 2">
+                <div class="title"> Displacement green: (39, 16)
+                    Displacement red: (88, 23)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/lady.png" alt="Image 2">
+                <div class="title">Displacement green: (57, 9)
+                    Displacement red: (121, 13)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/melons.png" alt="Image 2">
+                <div class="title">Displacement green: (79, 8)
+                    Displacement red: (177, 14)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/monastery.png" alt="Image 2">
+                <div class="title">Displacement green: (-3, 2)
+                    Displacement red: (3, 2)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/onion_church.png" alt="Image 2">
+                <div class="title">Displacement green: (52, 22)
+                    Displacement red: (107, 34)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/sculpture.png" alt="Image 2">
+                <div class="title">Displacement green: (32, -11)
+                    Displacement red: (140, -27)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/self_portrait.png" alt="Image 2">
+                <div class="title">Displacement green: (77, 29)
+                    Displacement red: (175, 37)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/three_generations.png" alt="Image 2">
+                <div class="title">Displacement green: (56, 11)
+                    Displacement red: (112, 7)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/tobolsk.png" alt="Image 2">
+                <div class="title">Displacement green: (3, 2)
+                    Displacement red: (6, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="Pyramid/train.png" alt="Image 2">
+                <div class="title">Displacement green: (755, -7)
+                    Displacement red: (94, 32)</div>
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+
+        <div class="column">
+            <h2>Edge Detection and Equalizing </h2>
+            <div class="image-container">
+                <img src="CannyPyramid/cathedral.png" alt="Image 1">
+                <div class="title">Displacement green: (5, 2)
+                    Displacement red: (12, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/church.png" alt="Image 2">
+                <div class="title">Displacement green: (24, 4)
+                    Displacement red: (58, -4)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/emir.png" alt="Image 2">
+                <div class="title">Displacement green: (49, 23)
+                    Displacement red: (107, 41)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/harvesters.png" alt="Image 2">
+                <div class="title">Displacement green: (61, 13)
+                    Displacement red: (117, 10)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/icon.png" alt="Image 2">
+                <div class="title"> Displacement green: (38, 15)
+                    Displacement red: (88, 22)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/lady.png" alt="Image 2">
+                <div class="title">Displacement green: (57, 9)
+                    Displacement red: (120, 13)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/melons.png" alt="Image 2">
+                <div class="title">Displacement green: (79, 7)
+                    Displacement red: (175, 11)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/monastery.png" alt="Image 2">
+                <div class="title">Displacement green: (-3, 2)
+                    Displacement red: (3, 2)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/onion_church.png" alt="Image 2">
+                <div class="title">Displacement green: (52, 24)
+                    Displacement red: (109, 38)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/sculpture.png" alt="Image 2">
+                <div class="title">Displacement green: (33, -11)
+                    Displacement red: (140, -27)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/self_portrait.png" alt="Image 2">
+                <div class="title">Displacement green: (77, 29)
+                    Displacement red: (175, 37)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/three_generations.png" alt="Image 2">
+                <div class="title">Displacement green: (56, 11)
+                    Displacement red: (105, 7)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/tobolsk.png" alt="Image 2">
+                <div class="title">Displacement green: (3, 3)
+                    Displacement red: (6, 3)</div>
+            </div>
+            <div class="image-container">
+                <img src="CannyPyramid/train.png" alt="Image 2">
+                <div class="title">Displacement green: (50, 5)
+                    Displacement red: (85, 29)</div>
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+    </div>
+
+</body>
+</html>
