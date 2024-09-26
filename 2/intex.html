@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between; 
+            text-align: center; 
+        }
+        .image-container {
+            width: 30%; 
+        }
+        .image-container-2 {
+            width: 50%; 
+        }
+        .image-container-1 {
+            width: 100%; 
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .image-container p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .image-container-weird {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            gap: 10px; /* Optional, adds space between images */
+        }
+        .image-container-weird img {
+            max-width: 45%; /* Adjusts width of each image to fit inside container */
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; 
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Welcome to Project 2</h1>
+    <h2>Part 1: Fun with Filters </h2>
+    <h3>Part 1.1: Finite Difference Operator  </h3>
+    <h4> I calculated the partial derivatives by convolving the image with two filters: one for the x-direction using [1, -1] and one for the y-direction using the transpose [1, -1]. I used the scipy.signal.convolve2d function with mode='same' for the convolution. After that, I computed the gradient magnitude by taking the square root of the sum of the squares of the x and y derivatives. Then I binarized the gradient magnitude by selecting a threshold that got the best outline. This helps detect the changes in intensity in the x and y directions.</h4>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="im/cameraman.png" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container">
+            <img src="im/dx_cameraman.png" alt="Image 2">
+            <p>Dx Image </p>
+        </div>
+        <div class="image-container">
+            <img src="im/dy_cameraman.png" alt="Image 3">
+            <p>Dy Image </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/cameraman.png" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="New folder/lines.png" alt="Image 2">
+            <p>Full Derivative  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t1.png" alt="Image 2">
+            <p>Threshold 1  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t10.png" alt="Image 2">
+            <p>Threshold 10  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t20.png" alt="Image 2">
+            <p>Threshold 20  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t30.png" alt="Image 2">
+            <p>Threshold 30  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t40.png" alt="Image 2">
+            <p>Threshold 40  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t50.png" alt="Image 2">
+            <p>Threshold 50  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t60.png" alt="Image 2">
+            <p>Threshold 60  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t70.png" alt="Image 2">
+            <p>Threshold 70  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="New folder/t80.png" alt="Image 2">
+            <p>Threshold 80  </p>
+        </div>
+    </div>
+
+
+    <h3> Part 1.2: Derivative of Gaussian (DoG) Filter  </h3>
+    <h4> I combined the process by taking the derivative of the Gaussian filter first, creating a Derivative of Gaussian (DoG) filter. The result is basically the same as applying the Gaussian filter and derivatives separately. There are just less small spots. I used cv2.getGaussianKernel to blur the image before calculating the partial derivatives and gradient magnitude. This gave me smoother and better edges. The better edges of the background appeared, with less noise overall. </h4>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/cameraman.png" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="New folder/blurry_cameraman.png" alt="Image 2">
+            <p>Blurry Cameraman  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="New folder/blurx.png" alt="Image 1">
+            <p>Bluring Filter</p>
+        </div>
+        <div class="image-container-2">
+            <img src="New folder/blury.png" alt="Image 2">
+            <p>Bluring Filter  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="im/cameraman.png" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="New folder/bluryy.png" alt="Image 2">
+            <p>Blured  </p>
+        </div>
+    </div>
+    <h2>Part 2: Fun with Frequencies!  </h2>
+    <h3>Part 2.1: Image "Sharpening"   </h3>
+    <h4> To sharpen the image, I used a Gaussian filter (via cv2.getGaussianKernel) to blur it and isolate the low-frequency components. Then, I subtracted these low frequencies from the original image to extract the high frequencies. After that, I multiplied the high frequencies by a factor, alpha, and added them back to the original image. Essentially, the sharpened image is calculated using the unsharp way which can be done by adding the original image to alpha * (the image - blurred).</h4>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/taj.jpg" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/taj_high.png" alt="Image 2">
+            <p>High pass filter </p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/taj_sharp.png" alt="Image 3">
+            <p> Sharpened Image</p> </p>
+        </div>
+    </div>
+    <div class="image-container-weird">
+        <img src="New folder/poster.jpg" alt="Image 1">
+        <img src="New folder/sharp_penguin copy.png" alt="Image 2">
+    </div>
+    <div class="image-container-weird">
+        <img src="New folder/door copy.jpg" alt="Image 1">
+        <img src="New folder/sharp_door.png" alt="Image 2">
+    </div>
+
+
+    <h4>Using Unmask </h4>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="New folder/taj.jpg" alt="Image 1">
+            <p>Original</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/taj_sharp copy.png" alt="Image 2">
+            <p>Unmasked image </p>
+        </div>
+    </div>
+    <h3>Part 2.2: Hybrid Images  </h3>
+    <h4>To create hybrid images, I combined the high-frequency details of one image with the low-frequency components of another. When you look at the result up close, the high frequencies dominate, but when you view it from a distance, the low frequencies become more prominent. I also used color to enhance this effect by incorporating colors from both images. The subtle high-frequency colors, along with the sharp details, add extra texture when viewed closely, while the blurred colors from the low-frequency image contribute to the overall appearance when seen from afar. </h4>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/DerekPicture.jpg" alt="Image 1">
+            <p>Derek Picture</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/nutmeg.jpg" alt="Image 2">
+            <p>Nutmeg Picture </p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/Derkmeg.png" alt="Image 3">
+            <p>Dermeg</p> </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/flower.png" alt="Image 1">
+            <p>Flowers Picture</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/empty.png" alt="Image 2">
+            <p>Empty Tree Picture </p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/flowmpty.png" alt="Image 3">
+            <p>Flowmpty</p> </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/ball.jpg" alt="Image 1">
+            <p>Ball Picture</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/sunny.png" alt="Image 2">
+            <p>Sun Picture </p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/sunnyball.png" alt="Image 3">
+            <p>Sunny Ball</p> </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/f1.png" alt="Image 1">
+            <p>Low Frequencies</p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/f2.png" alt="Image 2">
+            <p>High Frequencies </p>
+        </div>
+        <div class="image-container">
+            <img src="New folder/f3.png" alt="Image 3">
+            <p>All Frequencies</p> </p>
+        </div>
+    </div>
+    <h3>Part 2.3: Gaussian and Laplacian Stacks </h3>
+    <h4>To create a smooth blend between the images, I used Laplacian stacks for the images and a Gaussian stack for the blended region. The Gaussian stack applies the filter repeatedly at each layer, helping to blur the seams more effectively at lower frequencies. In contrast, the Laplacian stack contains the sub-band images between each layer of the Gaussian stack. As the mask becomes more blurred, the images themselves also become progressively more blurred. This method results in a clean, seamless blend because the images merge smoothly at lower frequencies while still retaining their sharp lines and details. </h4>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="orple/o1.png" alt="Image 2">
+            <p>Level 1  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="orple/o2.png" alt="Image 2">
+            <p>Level 2  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="orple/o3.png" alt="Image 2">
+            <p>Level 3  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="orple/o4.png" alt="Image 2">
+            <p>Level 4  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-1">
+            <img src="orple/o5.png" alt="Image 2">
+            <p>Level 5  </p>
+        </div>
+    </div>
+    
+    <h3>Part 2.4: Multiresolution Blending (a.k.a. the oraple!) </h3>
+    <h4>To blend the images, I worked with their Laplacian layers. For each layer, I multiplied the Laplacian of the first image by the Gaussian of the mask at that layer, and then added it to the Laplacian of the second image, weighted by 1 minus the Gaussian of the mask (G * L1 + (1 - G) * L2). Once I blended each layer this way, I combined the results from all the layers to get the final image. I also used color to enhance the effect by selecting images and objects with similar hues and values. This made the blending smoother and the final image more cohesive and visually interesting. </h4>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="orple/apple.jpeg" alt="Image 1">
+            <p>Orange</p>
+        </div>
+        <div class="image-container">
+            <img src="orple/orple.jpg" alt="Image 2">
+            <p>Apple </p>
+        </div>
+        <div class="image-container">
+            <img src="orple/orple.jpg" alt="Image 3">
+            <p>Orple</p> </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="New folder/cat.webp" alt="Image 1">
+            <p>Cat</p>
+        </div>
+        <div class="image-container">
+            <img src="orple/hairless_cat.jpg" alt="Image 2">
+            <p>Hairless </p>
+        </div>
+        <div class="image-container">
+            <img src="orple/half.png" alt="Image 3">
+            <p>Loosing Fur</p> </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="orple/ugly.png" alt="Image 1">
+            <p>Cat</p>
+        </div>
+        <div class="image-container">
+            <img src="orple/doby.jpg" alt="Image 2">
+            <p>Doby </p>
+        </div>
+        <div class="image-container">
+            <img src="orple/Very.png" alt="Image 3">
+            <p>Art</p> </p>
+        </div>
+    </div>
+
+    
+    
+
+</body>
+</html>
