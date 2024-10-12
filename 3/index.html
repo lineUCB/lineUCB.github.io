@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between; 
+            text-align: center; 
+        }
+        .image-container {
+            width: 30%; 
+        }
+        .image-container-2 {
+            width: 50%; 
+        }
+        .image-container-1 {
+            width: 100%; 
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .image-container p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .image-container-weird {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            gap: 10px; /* Optional, adds space between images */
+        }
+        .image-container-weird img {
+            max-width: 45%; /* Adjusts width of each image to fit inside container */
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; 
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Welcome to Project 3</h1>
+    <h2>Part 1. Defining Correspondences </h2>
+    <h4>Using the implementation of last year's labeling tool, I added 45 points onto George and the portrait. I am defining key points on the eyes and mouth as well as the corners of the image. I also used the alignment tool from project 2 to properly align the images so that the eyes matched each other. Here are some images from the triangulation delauney that is created from the average points.  </h4>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/george.png" alt="Image 1">
+            <p>Geroge Clooney</p>
+        </div>
+        <div class="image-container-2">
+            <img src="im/portrait_lady.png" alt="Image 2">
+            <p>Portrait </p>
+        </div>
+
+    </div>
+    <h4>Here is the code with the delauney triangualtion applied. This was done by taking every point to align them, and average out each point and creating a triangulation based on these points which creates these mesh masks. I also added points in the top to avoid morphing the background, and to ensure the faces wouldn't move too much. </h4>
+    <div class="image-row"></div>
+        <div class="image-container-2">
+            <img src="im/george_mesh.png" alt="Image 1">
+            <p>Geroge Clooney Triangulation </p>
+        </div>
+        <div class="image-container-2">
+            <img src="im/lady_mesh.png" alt="Image 2">
+            <p>Portrait Triangulation</p>
+        </div>
+
+    </div>
+
+    <h2>Part 2. Computing the "Mid-way Face"</h2>
+    <h4> For this portion of the project, to compute a mid-way face required several steps. First I began by computing the average face, which was done by taking the average of the points on each face that were mapped using the labels. These points were then used to create the triangulation of these points to morph both images to this midway point triangulation. To then morph them to the shape, requires you to go through each triangle created by the delauney triangulation and to create an an equation where you can solve for the triangle after the affine transformation. This way, we can then morph our original image to the triangle and warping the points into this shape. Then this is done with each color channel to maintain the color while changing the shape.  </h4>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/george.png" alt="Image 1">
+            <p>Original George</p>
+        </div>
+        <div class="image-container-2">
+            <img src="im/portrait_lady.png" alt="Image 2">
+            <p>Original Portrait  </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/wraped_george.png" alt="Image 1">
+            <p>Morphed Midway George</p>
+        </div>
+        <div class="image-container-2">
+            <img src="im/wraped_lady.png" alt="Image 1">
+            <p>Morphed Midway Lady  </p>
+        </div>
+    </div>
+    <h2>Part 3. The Morph Sequence</h2>
+    <h4> For this part I computed the affine transformation for both images to the midpoint mesh created and then over a 45 frames, the images got averaged with the wrapping function and the disolving fraction impacting what percent of the shape and colors are retained in each frame. To do this the points each time get averaged in the morphing sequesnce and the affine transformation gets perfomed. Next for each triangle the faces get morphed in respect to the wrapping and disolving fraction to produce this gif. </h4>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="im/george.png" alt="Image 1">
+            <p>George</p>
+        </div>
+        <div class="image-container">
+            <img src="im/20241007_214818.gif" alt="Image 2">
+            <p>Gif </p>
+        </div>
+        <div class="image-container">
+            <img src="im/portrait_lady.png" alt="Image 2">
+            <p> Portrait</p> </p>
+        </div>
+    </div>
+    
+    <h2>Part 4. The "Mean face" of a population</h2>
+    <h4>For this portion I used the Danes dataset and averaged all the points in each asf file to create averages for each angle as well as for the Men and the Women. This way the population was seperated by how they were facing as well as who was looking at the camera. Each Face was then morphed to the delauney averaged mask created, and that made sure that the faces were being properly morphed to the shapes to help average them out. After that the average of teh population was done by averaging every face by averaging the pixels and returning the image. </h4>
+    <h4>Here are some morphed images to the averages</h4>
+    <div class="image-row"></div>
+        <div class="image-container">
+            <img src="im/danes_average_1m_199.png" alt="Image 1">
+            <p>Averaged</p>
+        </div>
+        <div class="image-container">
+            <img src="im/danes_average_2m_62.png" alt="Image 2">
+            <p>Averaged </p>
+        </div>
+        <div class="image-container">
+            <img src="im/danes_average_3f_207.png" alt="Image 2">
+            <p> Averaged</p> </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+        <div class="image-container">
+            <img src="im/danes_average_4m_34.png" alt="Image 1">
+            <p>Averaged</p>
+        </div>
+        <div class="image-container">
+            <img src="im/danes_average_5m_95.png" alt="Image 2">
+            <p>Averaged </p>
+        </div>
+        <div class="image-container">
+            <img src="im/danes_average_6f_84.png" alt="Image 2">
+            <p> Averaged</p> </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+        <div class="image-container">
+            <img src="im/pattern1f.png" alt="Image 1">
+            <p>Averaged</p>
+        </div>
+        <div class="image-container">
+            <img src="im/pattern2f.png" alt="Image 2">
+            <p>Averaged </p>
+        </div>
+        <div class="image-container">
+            <img src="im/pattern3f.png" alt="Image 2">
+            <p> Averaged</p> </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+        <div class="image-container">
+            <img src="im/pattern4f.png" alt="Image 1">
+            <p>Averaged</p>
+        </div>
+        <div class="image-container">
+            <img src="im/pattern5f.png" alt="Image 2">
+            <p>Averaged </p>
+        </div>
+        <div class="image-container">
+            <img src="im/pattern6f.png" alt="Image 2">
+            <p> Averaged</p> </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+    <div class="image-container">
+        <img src="im/pattern1m.png" alt="Image 1">
+        <p>Averaged</p>
+    </div>
+    <div class="image-container">
+        <img src="im/pattern2m.png" alt="Image 2">
+        <p>Averaged </p>
+    </div>
+    <div class="image-container">
+        <img src="im/pattern3m.png" alt="Image 2">
+        <p> Averaged</p> </p>
+    </div>
+</div>
+<div class="image-row"></div>
+    <div class="image-container">
+        <img src="im/pattern4m.png" alt="Image 1">
+        <p>Averaged</p>
+    </div>
+    <div class="image-container">
+        <img src="im/pattern5m.png" alt="Image 2">
+        <p>Averaged </p>
+    </div>
+    <div class="image-container">
+        <img src="im/pattern6m.png" alt="Image 2">
+        <p> Averaged</p> </p>
+    </div>
+</div>
+<h4>I had some issue morphing the portrait to the danes because if I morphed it more strongly it didnt look right. Here is an example
+</h4>
+<div class="image-row"></div>
+    <div class="image-container-2">
+        <img src="im/portrait_lady.png" alt="Image 1">
+        <p>Averaged</p>
+    </div>
+    <div class="image-container-2">
+        <img src="im/Lady_dane_1f_morph.png" alt="Image 2">
+        <p>Averaged </p>
+    </div>
+    
+</div>
+
+<h2>Part 5. Caricatures: Extrapolating from the mean</h2>
+<h5>For this part here is the image was averaged to the average danish man, without fulling taking the shape of the average danish man. This is a caricature based on danish men, but it didn't morph smoothly.  </h5>
+<div class="image-row"></div>
+    <div class="image-container-2">
+        <img src="im/portrait_lady.png" alt="Image 1">
+        <p>Averaged</p>
+    </div>
+    <div class="image-container-2">
+        <img src="im/Lady_dane_4f_morph.png" alt="Image 2">
+        <p>Averaged </p>
+    </div>
+    
+</div>
+<h2>Bells and Whistles</h2>
+<h5>For this portion the average danish man was morphed to create a short little video of what smooth movement could look like using an averaged and smoothed Danish man caricature of him looking around.   </h5>
+<div class="image-row"></div>
+    <div class="image-container-1">
+        <img src="im/merged.gif" alt="Image 1">
+        <p>Averaged Life</p>
+    </div>
+    
+    
+</div>
+</body>
+</html>
