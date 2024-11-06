@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project 4a</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: space-between; 
+            text-align: center; 
+            flex-wrap: wrap;
+        }
+        .image-container {
+            width: 30%; 
+            margin-bottom: 20px;
+        }
+        .image-container-2 {
+            width: 45%; 
+            margin-bottom: 20px;
+        }
+        .image-container img, .image-container-2 img {
+            width: 100%;
+            height: auto;
+        }
+        .image-container p, .image-container-2 p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            .image-container, .image-container-2 {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Project 4.</h1>
+    <h2>Rectify </h2>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="im/book.jpg" alt="Image 1">
+            <p>Book</p>
+        </div>
+    </div>
+
+
+    <h2>Mosaics </h2>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="im/lake1.jpg" alt="Image 1">
+            <p>Lake Image</p>
+        </div>
+        <div class="image-container">
+            <img src="im/lake2.jpg" alt="Image 2">
+            <p>Lake Image2 </p>
+        </div>
+        <div class="image-container">
+            <img src="im/lake_mosaic.jpg" alt="Image 2">
+            <p>Mosaic </p>
+        </div>
+    </div>
+
+    <div class="image-row">
+        <div class="image-container">
+            <img src="im/beach1.jpg" alt="Image 1">
+            <p>Beach Image</p>
+        </div>
+        <div class="image-container">
+            <img src="im/beach2.jpg" alt="Image 2">
+            <p>Beach Image2 </p>
+        </div>
+        <div class="image-container">
+            <img src="im/beach_mosaic.jpg" alt="Image 2">
+            <p>Mosaic </p>
+        </div>
+    </div>
+
+    <h1>Project 4B.</h1>
+    <h2>Harris Point detector </h2>
+    <h3>I used the harris point detector implemented by the course staff. Here is the harris corners overlaid on an image. </h3>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="building/build1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="building/build2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="building/harris1.png" alt="Image 1">
+            <p>Harris Points</p>
+        </div>
+        <div class="image-container-2">
+            <img src="building/harris2.png" alt="Image 2">
+            <p>Harris Points </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/houses1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="italy/houses2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/harris1.png" alt="Image 1">
+            <p>Harris Points</p>
+        </div>
+        <div class="image-container-2">
+            <img src="italy/harris2.png" alt="Image 2">
+            <p>Harris Points </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="berkeley/womens1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="berkeley/womens2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="berkeley/harris1.png" alt="Image 1">
+            <p>Harris Points</p>
+        </div>
+        <div class="image-container-2">
+            <img src="berkeley/harris2.png" alt="Image 2">
+            <p>Harris Points </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="lake/lake1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="lake/lake2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="lake/harris1.png" alt="Image 1">
+            <p>Harris Points</p>
+        </div>
+        <div class="image-container-2">
+            <img src="lake/harris2.png" alt="Image 2">
+            <p>Harris Points </p>
+        </div>
+    </div>
+    <h2>Adaptive Non-Maximal Suppression</h2>
+    <h3>Here are the feature matches between the two images. </h3>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="building/build1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="building/build2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="building/points1.png" alt="Image 1">
+            <p>Features</p>
+        </div>
+        <div class="image-container-2">
+            <img src="building/points2.png" alt="Image 2">
+            <p>Features </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/houses1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="italy/houses2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/points1.png" alt="Image 1">
+            <p>Feature Points</p>
+        </div>
+        <div class="image-container-2">
+            <img src="italy/points2.png" alt="Image 2">
+            <p>Feature Points </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="berkeley/womens1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="berkeley/womens2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+        <div class="image-container-2"></div>
+            <img src="berkeley/points1.png" alt="Image 1">
+            <p>Feature Points</p>
+        </div>
+        <div class="image-container-2"></div>
+            <img src="berkeley/points2.png" alt="Image 2">
+            <p>Feature Points </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2"></div>
+            <img src="lake/lake1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="lake/lake2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="lake/points1.png" alt="Image 1">
+            <p>Feature Points</p>
+        </div>
+        <div class="image-container-2"></div>
+            <img src="lake/points2.png" alt="Image 2">
+            <p>Feature Points </p>
+        </div>
+    </div>
+    <h2>Feature Matching  </h2>
+    <h3>To match feature descriptors, we calculate the nearest neighbors (1-NN and 2-NN) for each feature patch. Think of the feature patches as 64-dimensional vectors, and we use Euclidean distance to find the closest matches via a nearest-neighbor search library. Then, we divide the distance to the 1-NN by the distance to the 2-NN. If the ratio is below a certain threshold, we consider the 1-NN to be a valid match.
+        Even after preprocessing, some features may still be matched incorrectly. To address this, we can use RANSAC to remove "outlier" correspondences that don't match well. To show how this works, we can plot the feature correspondences between two images before and after applying RANSAC. </h3>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="building/build1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="building/build2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row"></div>
+        <div class="image-container-2"></div>
+            <img src="building/match.png" alt="Image 1">
+            <p>Matching</p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/houses1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="italy/houses2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="italy/match.png" alt="Image 1">
+            <p>Matching Points</p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="berkeley/womens1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2">
+            <img src="berkeley/womens2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="berkeley/match.png" alt="Image 1">
+            <p>Matching Points</p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="lake/lake1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container-2"></div>
+            <img src="lake/lake2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container-2">
+            <img src="lake/match.png" alt="Image 1">
+            <p>Matching Points</p>
+        </div>
+    </div>
+    <h2>Image Stitching </h2>
+    <h3>Image stitching is the process of combining multiple images with overlapping fields of view to produce a single panoramic image. The stitching process can be broken down into three main steps: feature detection, feature matching, and image blending. </h3>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="building/build1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container">
+            <img src="building/build2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+        <div class="image-container">
+            <img src="building/pano.png" alt="Image 2">
+            <p>Stitched Image </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="italy/houses1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container">
+            <img src="italy/houses2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+        <div class="image-container">
+            <img src="italy/pano.png" alt="Image 2">
+            <p>Stitched Image </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="berkeley/womens1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container">
+            <img src="berkeley/womens2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+        <div class="image-container">
+            <img src="berkeley/pano.png" alt="Image 2">
+            <p>Stitched Image </p>
+        </div>
+    </div>
+    <div class="image-row">
+        <div class="image-container">
+            <img src="lake/lake1.jpg" alt="Image 1">
+            <p> Original</p>
+        </div>
+        <div class="image-container">
+            <img src="lake/lake2.jpg" alt="Image 2">
+            <p>Original </p>
+        </div>
+        <div class="image-container">
+            <img src="lake/pano1.png" alt="Image 2">
+            <p>Stitched Image </p>
+        </div>
+    </div>
+</body>
+</html>
